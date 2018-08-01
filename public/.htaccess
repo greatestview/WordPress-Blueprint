@@ -1,0 +1,47 @@
+# # Restrict access to wp-login.
+# <Files wp-login.php>
+# 	AuthName "WordPress Backend"
+# 	AuthType Basic
+# 	AuthUserFile /path/to/.htpasswd
+# 	Require valid-user
+# </Files>
+
+
+# Restrict access to other files.
+<FilesMatch "(\.htaccess|wp-config\.php|readme\.html)">
+	# Apache < 2.3
+	<IfModule !mod_authz_core.c>
+		Order allow,deny
+		Deny from all
+		Satisfy All
+	</IfModule>
+	# Apache ≥ 2.3
+	<IfModule mod_authz_core.c>
+		Require all denied
+	</IfModule>
+</FilesMatch>
+
+
+# Block the include-only files.
+# @see https://codex.wordpress.org/Hardening_WordPress#WP-Includes
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+	RewriteBase /
+	RewriteRule ^wp/wp-admin/includes/ - [F,L]
+	RewriteRule !^wp/wp-includes/ - [S=3]
+	RewriteRule ^wp/wp-includes/[^/]+\.php$ - [F,L]
+	RewriteRule ^wp/wp-includes/js/tinymce/langs/.+\.php - [F,L]
+	RewriteRule ^wp/wp-includes/theme-compat/ - [F,L]
+</IfModule>
+
+
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+	RewriteBase /
+	RewriteRule ^index\.php$ - [L]
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteRule . /index.php [L]
+</IfModule>
+# END WordPress

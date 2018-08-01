@@ -1,0 +1,11 @@
+# OS garbage files
+*.DS_Store
+ehthumbs.db
+Icon
+Thumbs.db
+
+# WordPress config file
+/config/wp-config.php
+
+# WordPress
+/public/content/uploads

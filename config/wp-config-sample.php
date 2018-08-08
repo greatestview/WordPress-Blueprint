@@ -1,1 +1,1 @@
-wp-config.dev-sample.php
+development-sample.php

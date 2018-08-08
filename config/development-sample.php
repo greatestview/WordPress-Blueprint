@@ -1,13 +1,14 @@
 <?php
 // Debug config
-ini_set('display_errors', 0);
-define('WP_DEBUG', false);
-define('SCRIPT_DEBUG', false);
+define('SAVEQUERIES', true);
+define('SCRIPT_DEBUG', true);
+define('WP_DEBUG', true);
 
 // Deployment config
-define('DISABLE_WP_CRON', true);
+# define('AUTOMATIC_UPDATER_DISABLED', true);
+# define('DISABLE_WP_CRON', false);
 define('DISALLOW_FILE_EDIT', true);
-define('DISALLOW_FILE_MODS', true);
+define('DISALLOW_FILE_MODS', false);
 
 // Database config
 define('DB_NAME', 'database_name_here');
@@ -31,7 +32,7 @@ define('NONCE_SALT',       'put your unique phrase here');
 // Site config
 define('WP_HOME', 'https://your_site.com');
 define('WP_SITEURL', 'https://your_site.com/wp');
-define('WP_CONTENT_URL', WP_HOME . '/content');
 define('WP_CONTENT_DIR', dirname( ABSPATH ) . '/content');
-define('WPLANG', 'de_DE');
-define('WP_ALLOW_MULTISITE', false);
+define('WP_CONTENT_URL', WP_HOME . '/content');
+# define('WP_ALLOW_MULTISITE', false);
+# define('WPLANG', 'de_DE');

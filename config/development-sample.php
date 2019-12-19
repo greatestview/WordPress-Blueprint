@@ -31,7 +31,7 @@ define('NONCE_SALT',       'put your unique phrase here');
 
 // Site config
 define('WP_HOME', 'https://your_site.com');
-define('WP_SITEURL', 'https://your_site.com/wp');
+define('WP_SITEURL', WP_HOME . '/wp');
 define('WP_CONTENT_DIR', dirname( ABSPATH ) . '/content');
 define('WP_CONTENT_URL', WP_HOME . '/content');
 # define('WP_ALLOW_MULTISITE', false);
